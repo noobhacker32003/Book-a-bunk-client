@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import Carousel from './Carousel';
 import RoomBooking from './RoomBooking';
+import { onAuthStateChanged,signOut } from "firebase/auth";
+import auth from '../../firebase.config';
 
 const Home = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+          }
+        });
+
+        
+      
+        return () => unsubscribe(); // Clean up listener
+      }, []);
+      
+
+    
     const cards = [
         {
           id: 1,
@@ -44,7 +63,15 @@ const Home = () => {
           description: "Elegant room with premium services for business travelers.",
         },
       ];
-
+      const handleLogout = () => {
+        signOut(auth)
+          .then(() => {
+            console.log("User signed out successfully");
+          })
+          .catch((error) => {
+            console.error("Error signing out:", error);
+          });
+      };
     
     return (
         <div>
@@ -53,7 +80,15 @@ const Home = () => {
 <div className='flex w-full justify-end'>
     
     
-    <Link to="/login"><button className={`p-2 mr-9 mt-5 btn btn-accent w-28 `}>Login</button> </Link>
+{!isLoggedIn ? (
+    <Link to="/login">
+      <button className="p-2 mr-9 mt-5 btn btn-accent w-28">Login</button>
+    </Link>
+  ) : (
+    <button onClick={handleLogout} className="p-2 mr-9 mt-5 btn btn-warning w-28">
+      Logout
+    </button>
+  )}
 </div>
 
 <div className=''><h1 className='text-center text-5xl '>Book a bunk</h1></div>

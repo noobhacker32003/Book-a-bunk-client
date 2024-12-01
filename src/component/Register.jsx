@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Slidebar from "./Sidebar"
 import { Link, useNavigate } from 'react-router-dom';
-import {  createUserWithEmailAndPassword } from "firebase/auth";
+import {  createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import auth from '../../firebase.config';
 
 const Register = () => {
@@ -25,6 +25,11 @@ const Register = () => {
     // Signed up 
     userCredential.user.phoneNumber = number
     console.log(userCredential.user);
+    updateProfile(userCredential.user,{
+        displayName: name,
+        photoURL: photo,
+
+    })
     navigate("/")
     
 
