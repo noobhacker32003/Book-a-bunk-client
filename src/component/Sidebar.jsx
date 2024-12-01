@@ -47,20 +47,20 @@ const Sidebar = () => {
             <span>Home</span>
           </Link>
           <Link
-            to="/alerts"
+            to="/rooms"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-bell-o mr-2"></i>
-            <span>Alerts</span>
+            <span>Available rooms</span>
           </Link>
           <Link
-            to="/messages"
+            to="/studyRoom"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-envelope-o mr-2"></i>
-            <span>Messages</span>
+            <span>Group study room</span>
           </Link>
           <Link
             to="/comments"
@@ -71,12 +71,12 @@ const Sidebar = () => {
             <span>Comments</span>
           </Link>
           <Link
-            to="/analytics"
+            to="/Profile"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-bar-chart-o mr-2"></i>
-            <span>Analytics</span>
+            <span>Profile</span>
           </Link>
           <Link
             to="/"

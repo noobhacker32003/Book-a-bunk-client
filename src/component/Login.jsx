@@ -1,19 +1,42 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {  NavLink, useNavigate } from 'react-router-dom';
 import Slidebar from './Sidebar';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import auth from "../../firebase.config"
+
 
 const Login = () => {
+    const navigate = useNavigate()
     const handleLogin = e =>
+    
         {
             e.preventDefault();
             const email = e.target.email.value;
             const password = e.target.password.value;
-            console.log(email,password);
+            
+
+            signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("yes");
+            navigate("/")
+            
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+            
             
             
             
             
         }
+       
+        
+        
 
     return (
         <div>

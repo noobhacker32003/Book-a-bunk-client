@@ -9,6 +9,9 @@ import {
 import Home from './component/Home';
 import Login from './component/Login';
 import Register from './component/Register';
+import RoomBooking from './component/RoomBooking';
+import GroupStudy from './component/GroupStudy';
+import Profile from './component/Profile';
 
 
 const router = createBrowserRouter([
@@ -23,6 +26,18 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
+  },
+  {
+    path: "/rooms",
+    element: <RoomBooking></RoomBooking>,
+  },
+  {
+    path: "/studyRoom",
+    element: <GroupStudy></GroupStudy>,
+  },
+  {
+    path: "/Profile",
+    element: <Profile></Profile>,
   },
 ]);
 
