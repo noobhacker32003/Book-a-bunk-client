@@ -140,7 +140,7 @@ const Home = () => {
 </div>
 
 <div className="w-full flex mx-[700px] mb-10">
-<button className='btn btn-accent'>More study rooms</button>
+<Link to={"/studyRoom"}><button className='btn btn-accent'>More study rooms</button></Link>
 </div>
 
         </div>
