@@ -11,8 +11,12 @@ const Sidebar = () => {
   return (
     <div className="relative">
       {/* Burger Button */}
-      <button onClick={toggleSidebar} className={`absolute top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded transition-opacity duration-300 ${
-          isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} >
+      <button
+        onClick={toggleSidebar}
+        className={`absolute top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded transition-opacity duration-300 ${
+          isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+      >
         {/* Burger Icon */}
         <span className="block w-6 h-1 bg-white mb-1"></span>
         <span className="block w-6 h-1 bg-white mb-1"></span>
@@ -21,7 +25,9 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white transform  isOpen 'translate-x-0' : '-translate-x-full' } z-40`}
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        } z-40`}
       >
         {/* Close Button */}
         <button
@@ -33,12 +39,12 @@ const Sidebar = () => {
 
         <nav className="flex flex-col h-full p-4 mt-8">
           <Link
-            to="/favorites"
+            to="/"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-star-o mr-2"></i>
-            <span>Favorites</span>
+            <span>Home</span>
           </Link>
           <Link
             to="/alerts"
@@ -73,12 +79,12 @@ const Sidebar = () => {
             <span>Analytics</span>
           </Link>
           <Link
-            to="/reading-list"
+            to="/"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-newspaper-o mr-2"></i>
-            <span>Reading List</span>
+            <span >Log Out</span>
           </Link>
         </nav>
       </div>
@@ -86,9 +92,9 @@ const Sidebar = () => {
       {/* Overlay */}
       {isOpen && (
         <div
-          onClick={toggleSidebar} className="fixed inset-0 bg-black bg-opacity-50 z-30">
-
-        </div>
+          onClick={toggleSidebar}
+          className="fixed inset-0 bg-black bg-opacity-50 z-30"
+        ></div>
       )}
     </div>
   );
