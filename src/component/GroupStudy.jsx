@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 
 const GroupStudy = () => {
 
@@ -58,7 +59,8 @@ const GroupStudy = () => {
             <h2 className="card-title">{card.title}</h2>
             <p>{card.description}</p>
             <div className="card-actions justify-end">
-            <button className="btn btn-primary">Book Now</button>
+            <Link to={`/studyRoom/${card.id}`}><button className="btn btn-primary">Book Now</button></Link>
+            
             </div>
         </div>
         </div>
