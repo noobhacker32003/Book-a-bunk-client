@@ -12,6 +12,9 @@ import Register from './component/Register';
 import RoomBooking from './component/RoomBooking';
 import GroupStudy from './component/GroupStudy';
 import Profile from './component/Profile';
+import RoomDetails from './component/RoomDetails';
+import StudyRoomDetails from './component/StudyRoomDetails';
+
 
 
 const router = createBrowserRouter([
@@ -39,6 +42,14 @@ const router = createBrowserRouter([
     path: "/Profile",
     element: <Profile></Profile>,
   },
+  {
+    path: "/room/:id", // Add route for RoomDetails
+    element: <RoomDetails></RoomDetails>,
+  },
+  {
+    path: "/studyRoom/:id",
+    element: <StudyRoomDetails></StudyRoomDetails>,
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

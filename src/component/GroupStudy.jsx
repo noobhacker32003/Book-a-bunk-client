@@ -3,6 +3,9 @@ import Sidebar from './Sidebar';
 
 const GroupStudy = () => {
 
+
+
+
     const cards = [
         {
           id: 1,
@@ -44,7 +47,7 @@ const GroupStudy = () => {
     return (
 <div className="container mx-auto my-10">
 <Sidebar></Sidebar>
-    <h1 className="text-3xl font-bold text-center mb-6">Available Rooms</h1>
+    <h1 className="text-3xl font-bold text-center mb-6">Available Study Rooms</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
     {cards.map((card) => (
         <div key={card.id} className="card bg-base-100 shadow-xl">
