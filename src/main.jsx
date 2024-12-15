@@ -14,6 +14,9 @@ import GroupStudy from './component/GroupStudy';
 import Profile from './component/Profile';
 import RoomDetails from './component/RoomDetails';
 import StudyRoomDetails from './component/StudyRoomDetails';
+import Cart from './component/Cart';
+//import New from './component/New';
+import Feedback from './component/Feedback';
 
 
 
@@ -21,6 +24,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+    loader: () => fetch("http://localhost:5000/rooms")
   },
   {
     path: "/login",
@@ -33,6 +37,7 @@ const router = createBrowserRouter([
   {
     path: "/rooms",
     element: <RoomBooking></RoomBooking>,
+    loader: () => fetch("http://localhost:5000/rooms")
   },
   {
     path: "/studyRoom",
@@ -45,10 +50,19 @@ const router = createBrowserRouter([
   {
     path: "/room/:id", // Add route for RoomDetails
     element: <RoomDetails></RoomDetails>,
+    loader: () => fetch("http://localhost:5000/rooms")
   },
   {
     path: "/studyRoom/:id",
     element: <StudyRoomDetails></StudyRoomDetails>,
+  },
+  {
+    path: "/Cart",
+    element: <Cart></Cart>
+  },
+  {
+    path: "/feedback",
+    element:<Feedback></Feedback>
   }
 ]);
 

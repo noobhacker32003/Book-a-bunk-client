@@ -63,12 +63,12 @@ const Sidebar = () => {
             <span>Group study room</span>
           </Link>
           <Link
-            to="/comments"
+            to="/feedback"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-comment-o mr-2"></i>
-            <span>Comments</span>
+            <span>feedback</span>
           </Link>
           <Link
             to="/Profile"

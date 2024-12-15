@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Sidebar from './Sidebar';
 const StudyRoomDetails = () => {
 
   // Sample study room data (this would come from a database in a real-world app)
@@ -101,6 +102,7 @@ const StudyRoomDetails = () => {
 
   return (
     <div className="container mx-auto my-10 px-4">
+      <Sidebar></Sidebar>
       {/* Study Room Header */}
       <h1 className="text-4xl font-bold text-center mb-6">{studyRoom.title}</h1>
       

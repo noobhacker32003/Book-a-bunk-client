@@ -1,14 +1,19 @@
 import React, { useState,useEffect } from 'react';
-
+import { useLoaderData } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import Carousel from './Carousel';
-import RoomBooking from './RoomBooking';
+
 import { onAuthStateChanged,signOut } from "firebase/auth";
 import auth from '../../firebase.config';
 
 const Home = () => {
+    const room = useLoaderData();
+    // console.log(room);
+    
+    const [rooms, setrooms] = useState(room);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
@@ -16,6 +21,15 @@ const Home = () => {
           } else {
             setIsLoggedIn(false);
           }
+
+          // fetch("http://localhost:5000/rooms",{
+          //   method : "Get",
+          //   headers : {
+          //     "Content-Type" : "application/json",
+
+          //   }
+
+          // })
         });
 
         
@@ -25,44 +39,48 @@ const Home = () => {
       
 
     
-    const cards = [
-        {
-          id: 1,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 1",
-          description: "Spacious and well-furnished room with a great view.",
-        },
-        {
-          id: 2,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 2",
-          description: "Cozy room with modern amenities for a comfortable stay.",
-        },
-        {
-          id: 3,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 3",
-          description: "A luxurious room with elegant decor and top-notch facilities.",
-        },
-        {
-          id: 4,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 4",
-          description: "Budget-friendly room with all basic amenities.",
-        },
-        {
-          id: 5,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 5",
-          description: "A perfect space for relaxation and rejuvenation.",
-        },
-        {
-          id: 6,
-          image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-          title: "Room 6",
-          description: "Elegant room with premium services for business travelers.",
-        },
-      ];
+    // const rooms = [
+    //     {
+    //       id: 1,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 1",
+    //       description: "Spacious and well-furnished room with a great view.",
+    //     },
+    //     {
+    //       id: 2,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 2",
+    //       description: "Cozy room with modern amenities for a comfortable stay.",
+    //     },
+    //     {
+    //       id: 3,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 3",
+    //       description: "A luxurious room with elegant decor and top-notch facilities.",
+    //     },
+    //     {
+    //       id: 4,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 4",
+    //       description: "Budget-friendly room with all basic amenities.",
+    //     },
+    //     {
+    //       id: 5,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 5",
+    //       description: "A perfect space for relaxation and rejuvenation.",
+    //     },
+    //     {
+    //       id: 6,
+    //       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+    //       title: "Room 6",
+    //       description: "Elegant room with premium services for business travelers.",
+    //     },
+    //   ];
+      
+      
+
+      
       const handleLogout = () => {
         signOut(auth)
           .then(() => {
@@ -97,7 +115,7 @@ const Home = () => {
     
       <h1 className="text-3xl font-bold text-center mb-6">Available Rooms</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {cards.map((card) => (
+        {rooms.map((card) => (
           <div key={card.id} className="card bg-base-100 shadow-xl">
             <figure>
               <img src={card.image} alt={card.title} />
@@ -105,6 +123,7 @@ const Home = () => {
             <div className="card-body">
               <h2 className="card-title">{card.title}</h2>
               <p>{card.description}</p>
+              <p className="text-xl font-semibold mb-4">Price: <span className="text-green-500">${card.pricePerNight} per night</span></p>
               <div className="card-actions justify-end">
               <Link to={`/room/${card.id}`}><button className="btn btn-primary">Book Now</button></Link>
               </div>
@@ -122,7 +141,7 @@ const Home = () => {
 
     <h1 className="text-3xl font-bold text-center mb-6">Available Study rooms</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {cards.map((card) => (
+    {rooms.map((card) => (
         <div key={card.id} className="card bg-base-100 shadow-xl">
         <figure>
             <img src="https://libraries.uh.edu/images/studyrooms-018.jpg" alt={card.title} />

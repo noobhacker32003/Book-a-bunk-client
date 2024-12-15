@@ -1,58 +1,61 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-
+import { useParams, Link, useLoaderData } from 'react-router-dom';
+import Sidebar from './Sidebar';
 const RoomDetails = () => {
-  // Sample room data (this would come from a DB in real-world use)
-  const cards = [
-    {
-      id: 1,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 1",
-      description: "Spacious and well-furnished room with a great view.",
-      price: 150, // Example price from DB
-    },
-    {
-      id: 2,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 2",
-      description: "Cozy room with modern amenities for a comfortable stay.",
-      price: 120, // Example price from DB
-    },
-    {
-      id: 3,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 3",
-      description: "A luxurious room with elegant decor and top-notch facilities.",
-      price: 250, // Example price from DB
-    },
-    {
-      id: 4,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 4",
-      description: "Budget-friendly room with all basic amenities.",
-      price: 80, // Example price from DB
-    },
-    {
-      id: 5,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 5",
-      description: "A perfect space for relaxation and rejuvenation.",
-      price: 200, // Example price from DB
-    },
-    {
-      id: 6,
-      image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
-      title: "Room 6",
-      description: "Elegant room with premium services for business travelers.",
-      price: 180, // Example price from DB
-    },
-  ];
+
+  const roomData = useLoaderData();
+  const [rooms, setrooms] = useState(roomData);
+//   // Sample room data (this would come from a DB in real-world use)
+// const cards = [
+//     {
+//       id: 1,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 1",
+//       description: "Spacious and well-furnished room with a great view.",
+//       price: 150, // Example price from DB
+//     },
+//     {
+//       id: 2,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 2",
+//       description: "Cozy room with modern amenities for a comfortable stay.",
+//       price: 120, // Example price from DB
+//     },
+//     {
+//       id: 3,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 3",
+//       description: "A luxurious room with elegant decor and top-notch facilities.",
+//       price: 250, // Example price from DB
+//     },
+//     {
+//       id: 4,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 4",
+//       description: "Budget-friendly room with all basic amenities.",
+//       price: 80, // Example price from DB
+//     },
+//     {
+//       id: 5,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 5",
+//       description: "A perfect space for relaxation and rejuvenation.",
+//       price: 200, // Example price from DB
+//     },
+//     {
+//       id: 6,
+//       image: "https://static-otelico.com/cache/hotel_aragon_perpignan/1000020937_1.jpg",
+//       title: "Room 6",
+//       description: "Elegant room with premium services for business travelers.",
+//       price: 180, // Example price from DB
+//     },
+//   ];
 
   // Retrieve the room id from the URL
   const { id } = useParams();
   
   // Find the room that matches the id from the URL
-  const room = cards.find(card => card.id === parseInt(id));
+  const room = rooms.find(card => card.id === parseInt(id));
 
   if (!room) {
     return (
@@ -107,6 +110,7 @@ const RoomDetails = () => {
 
   return (
     <div className="container mx-auto my-10 px-4">
+    <Sidebar></Sidebar>
       {/* Room Header */}
       <h1 className="text-4xl font-bold text-center mb-6">{room.title}</h1>
       
@@ -119,7 +123,7 @@ const RoomDetails = () => {
       <div className="text-lg mb-8">
         <p className="text-xl font-semibold mb-4">Room ID: <span className="text-blue-500">{room.id}</span></p>
         <p className="mb-4">{room.description}</p>
-        <p className="text-xl font-semibold mb-4">Price: <span className="text-green-500">${room.price} per night</span></p>
+        <p className="text-xl font-semibold mb-4">Price: <span className="text-green-500">${room.pricePerNight} per night</span></p>
       </div>
 
       {/* Error Message */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Slidebar from "./Sidebar"
+import Sidebar from "./Sidebar"
 import { Link, useNavigate } from 'react-router-dom';
 import {  createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import auth from '../../firebase.config';
@@ -24,6 +24,7 @@ const Register = () => {
   .then((userCredential) => {
     // Signed up 
     userCredential.user.phoneNumber = number
+    navigate("/")
     console.log(userCredential.user);
     updateProfile(userCredential.user,{
         displayName: name,
@@ -85,7 +86,7 @@ const Register = () => {
 
     return (
         <div>
-        <Slidebar></Slidebar>
+        <Sidebar></Sidebar>
         <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
