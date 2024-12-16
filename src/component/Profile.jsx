@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import auth from '../../firebase.config';
-import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth"; // Added updateProfile
+import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth"; 
 import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
@@ -25,6 +25,7 @@ const Profile = () => {
         setFormData({
           name: displayName || "",
           email: email,
+          phoneNumber: phoneNumber || "",
           photoURL: photoURL || "",
         });
       } else {
@@ -57,14 +58,18 @@ const Profile = () => {
   };
 
   const handleSave = () => {
-    const { name, photoURL } = formData;
+    const { name, photoURL, phoneNumber } = formData;
+
+    
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
     })
       .then(() => {
         console.log("Profile updated successfully");
-        setUserInfo({ ...userInfo, name, photoURL });
+
+        
+        setUserInfo({ ...userInfo, name, photoURL, phoneNumber });
         setIsEditing(false);
       })
       .catch((error) => {
@@ -101,6 +106,14 @@ const Profile = () => {
                       value={formData.photoURL}
                       onChange={handleInputChange}
                       placeholder="Enter Photo URL"
+                      className="input input-bordered mb-4"
+                    />
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleInputChange}
+                      placeholder="Enter Phone Number"
                       className="input input-bordered mb-4"
                     />
                     <button onClick={handleSave} className="btn btn-success mr-2">

@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import auth from '../../firebase.config';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle sidebar visibility
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const navigate = useNavigate();
+
+  // Monitor authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out successfully");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
   };
 
   return (
@@ -68,7 +91,7 @@ const Sidebar = () => {
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-comment-o mr-2"></i>
-            <span>feedback</span>
+            <span>Feedback</span>
           </Link>
           <Link
             to="/Profile"
@@ -78,14 +101,29 @@ const Sidebar = () => {
             <i className="fa fa-fw fa-bar-chart-o mr-2"></i>
             <span>Profile</span>
           </Link>
-          <Link
-            to="/"
-            className="flex items-center px-4 py-2 hover:bg-gray-700"
-            onClick={toggleSidebar}
-          >
-            <i className="fa fa-fw fa-newspaper-o mr-2"></i>
-            <span >Log Out</span>
-          </Link>
+
+          {/* Conditional Logout/Login */}
+          {isLoggedIn ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                toggleSidebar();
+              }}
+              className="flex items-center px-4 py-2 hover:bg-gray-700"
+            >
+              <i className="fa fa-fw fa-sign-out mr-2"></i>
+              <span>Log Out</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center px-4 py-2 hover:bg-gray-700"
+              onClick={toggleSidebar}
+            >
+              <i className="fa fa-fw fa-sign-in mr-2"></i>
+              <span>Log In</span>
+            </Link>
+          )}
         </nav>
       </div>
 

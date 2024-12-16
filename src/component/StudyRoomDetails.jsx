@@ -8,13 +8,13 @@ const StudyRoomDetails = () => {
     const room = useLoaderData();
     const [rooms, setrooms] = useState(room);
   // Sample study room data (this would come from a database in a real-world app)
-  const studyRooms = rooms
+  
 
   // Retrieve the study room id from the URL params
   const { id } = useParams();
 
   // Find the study room that matches the ID from the URL
-  const studyRoom = studyRooms.find(room => room.id === parseInt(id));
+  const studyRoom = rooms.find(room => room.id === parseInt(id));
 
   // If the study room is not found, show a "Room not found" message
   if (!studyRoom) {
