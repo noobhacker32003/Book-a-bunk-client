@@ -1,54 +1,14 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 const StudyRoomDetails = () => {
 
+
+    const room = useLoaderData();
+    const [rooms, setrooms] = useState(room);
   // Sample study room data (this would come from a database in a real-world app)
-  const studyRooms = [
-    {
-      id: 1,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 1",
-      description: "Spacious and quiet study room perfect for group study or individual work.",
-      price: 20, // Example price for renting a study room
-    },
-    {
-      id: 2,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 2",
-      description: "Cozy and modern study room with ample space for your books and materials.",
-      price: 15,
-    },
-    {
-      id: 3,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 3",
-      description: "A luxurious study room with great lighting and comfortable seating for long hours of study.",
-      price: 25,
-    },
-    {
-      id: 4,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 4",
-      description: "Budget-friendly study room with all essential amenities.",
-      price: 12,
-    },
-    {
-      id: 5,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 5",
-      description: "Perfect study room for focused work with a serene environment.",
-      price: 18,
-    },
-    {
-      id: 6,
-      image: "https://libraries.uh.edu/images/studyrooms-018.jpg",
-      title: "Study Room 6",
-      description: "Premium study room with high-speed internet and all the necessary equipment.",
-      price: 30,
-    },
-  ];
+  const studyRooms = rooms
 
   // Retrieve the study room id from the URL params
   const { id } = useParams();

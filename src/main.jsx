@@ -42,6 +42,7 @@ const router = createBrowserRouter([
   {
     path: "/studyRoom",
     element: <GroupStudy></GroupStudy>,
+    loader: () => fetch("http://localhost:5000/studyRooms")
   },
   {
     path: "/Profile",
@@ -55,6 +56,8 @@ const router = createBrowserRouter([
   {
     path: "/studyRoom/:id",
     element: <StudyRoomDetails></StudyRoomDetails>,
+    loader: () => fetch("http://localhost:5000/studyRooms")
+    
   },
   {
     path: "/Cart",

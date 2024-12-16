@@ -9,9 +9,10 @@ import auth from '../../firebase.config';
 
 const Home = () => {
     const room = useLoaderData();
-    // console.log(room);
+     //console.log(room);
     
     const [rooms, setrooms] = useState(room);
+    const [studyRooms, setstudyRooms] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     
     useEffect(() => {
@@ -22,14 +23,12 @@ const Home = () => {
             setIsLoggedIn(false);
           }
 
-          // fetch("http://localhost:5000/rooms",{
-          //   method : "Get",
-          //   headers : {
-          //     "Content-Type" : "application/json",
+          fetch("http://localhost:5000/studyRooms")
+          .then(res => res.json())
+          .then(data => setstudyRooms(data)
+          )
 
-          //   }
-
-          // })
+         
         });
 
         
@@ -141,10 +140,10 @@ const Home = () => {
 
     <h1 className="text-3xl font-bold text-center mb-6">Available Study rooms</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {rooms.map((card) => (
+    {studyRooms.map((card) => (
         <div key={card.id} className="card bg-base-100 shadow-xl">
         <figure>
-            <img src="https://libraries.uh.edu/images/studyrooms-018.jpg" alt={card.title} />
+            <img className='w-[490px] h-[368px]' src={card.image} alt={card.title} />
         </figure>
         <div className="card-body">
             <h2 className="card-title">{card.title}</h2>
