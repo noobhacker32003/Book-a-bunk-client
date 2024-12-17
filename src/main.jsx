@@ -17,6 +17,7 @@ import StudyRoomDetails from './component/StudyRoomDetails';
 import Cart from './component/Cart';
 //import New from './component/New';
 import Feedback from './component/Feedback';
+import Payments from './component/Payments';
 
 
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/feedback",
     element:<Feedback></Feedback>
+  },
+  {
+    path: "/payments",
+    element: <Payments></Payments>
   }
 ]);
 

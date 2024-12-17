@@ -31,6 +31,16 @@ const Sidebar = () => {
       });
   };
 
+  // Handle navigation for Payment History
+  const handlePaymentHistory = () => {
+    if (isLoggedIn) {
+      navigate("/payments");
+    } else {
+      navigate("/login");
+    }
+    toggleSidebar(); // Close sidebar after navigation
+  };
+
   return (
     <div className="relative">
       {/* Burger Button */}
@@ -101,6 +111,15 @@ const Sidebar = () => {
             <i className="fa fa-fw fa-bar-chart-o mr-2"></i>
             <span>Profile</span>
           </Link>
+
+          {/* Payment History */}
+          <button
+            onClick={handlePaymentHistory}
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+          >
+            <i className="fa fa-fw fa-money mr-2"></i>
+            <span>Payment History</span>
+          </button>
 
           {/* Conditional Logout/Login */}
           {isLoggedIn ? (
