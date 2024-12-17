@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import auth from '../../firebase.config';
+import auth from "../../firebase.config";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle sidebar visibility
@@ -31,26 +31,15 @@ const Sidebar = () => {
       });
   };
 
-  // Handle navigation for Payment History
-  const handlePaymentHistory = () => {
-    if (isLoggedIn) {
-      navigate("/payments");
-    } else {
-      navigate("/login");
-    }
-    toggleSidebar(); // Close sidebar after navigation
-  };
-
   return (
     <div className="relative">
       {/* Burger Button */}
       <button
         onClick={toggleSidebar}
         className={`absolute top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded transition-opacity duration-300 ${
-          isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        {/* Burger Icon */}
         <span className="block w-6 h-1 bg-white mb-1"></span>
         <span className="block w-6 h-1 bg-white mb-1"></span>
         <span className="block w-6 h-1 bg-white"></span>
@@ -59,7 +48,7 @@ const Sidebar = () => {
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white transform transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } z-40`}
       >
         {/* Close Button */}
@@ -104,6 +93,22 @@ const Sidebar = () => {
             <span>Feedback</span>
           </Link>
           <Link
+            to="/payments"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <i className="fa fa-fw fa-credit-card mr-2"></i>
+            <span>Payment History</span>
+          </Link>
+          <Link
+            to="/bookings"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <i className="fa fa-fw fa-calendar-check-o mr-2"></i>
+            <span>Booking History</span>
+          </Link>
+          <Link
             to="/Profile"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
@@ -111,15 +116,6 @@ const Sidebar = () => {
             <i className="fa fa-fw fa-bar-chart-o mr-2"></i>
             <span>Profile</span>
           </Link>
-
-          {/* Payment History */}
-          <button
-            onClick={handlePaymentHistory}
-            className="flex items-center px-4 py-2 hover:bg-gray-700"
-          >
-            <i className="fa fa-fw fa-money mr-2"></i>
-            <span>Payment History</span>
-          </button>
 
           {/* Conditional Logout/Login */}
           {isLoggedIn ? (

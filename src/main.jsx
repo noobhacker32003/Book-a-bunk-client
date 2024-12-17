@@ -18,6 +18,7 @@ import Cart from './component/Cart';
 //import New from './component/New';
 import Feedback from './component/Feedback';
 import Payments from './component/Payments';
+import BookingHistory from './component/BookingHistory';
 
 
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
   {
     path: "/feedback",
     element:<Feedback></Feedback>
+  },
+  {
+    path: "/bookings",
+    element:<BookingHistory></BookingHistory>
   },
   {
     path: "/payments",
