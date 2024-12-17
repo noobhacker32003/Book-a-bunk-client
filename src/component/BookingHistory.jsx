@@ -46,11 +46,12 @@ const BookingHistory = () => {
         <div className="space-y-4">
           {bookings.map((booking) => (
             <div
-              key={booking.id}
+              key={booking.roomId}
               className="bg-white shadow-md rounded-lg p-6 border border-gray-200"
             >
-              <h3 className="text-xl font-semibold">{booking.roomName}</h3>
-              <p className="text-gray-700">Booking Date: {booking.bookingDate}</p>
+              <h3 className="text-xl font-semibold">Room {booking.
+roomId}</h3>
+              <p className="text-gray-700">Booking Date: {booking.date}</p>
               <p
                 className={`text-sm mt-2 ${
                   booking.status === "Confirmed"

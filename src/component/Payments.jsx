@@ -19,7 +19,7 @@ const Payments = () => {
         
       if (user) {
         setUserEmail(user.email);
-        console.log(user.email);
+        //console.log(user.email);
          // Store user's email
       } else {
         setUserEmail(null);
@@ -39,7 +39,7 @@ const Payments = () => {
 
         // Filter payments by the logged-in user's email
         const userPayments = data.filter(payment => payment.email === userEmail);
-        console.log(userPayments);
+        //console.log(userPayments);
         
         setPayments(userPayments);
       } catch (error) {
