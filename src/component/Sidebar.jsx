@@ -116,6 +116,22 @@ const Sidebar = () => {
             <i className="fa fa-fw fa-bar-chart-o mr-2"></i>
             <span>Profile</span>
           </Link>
+          <Link
+            to="/food"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <i className="fa fa-fw fa-cutlery mr-2"></i>
+            <span>Food</span>
+          </Link>
+          <Link
+            to="/pcAccess"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <i className="fa fa-fw fa-desktop mr-2"></i>
+            <span>PC Access</span>
+          </Link>
 
           {/* Conditional Logout/Login */}
           {isLoggedIn ? (

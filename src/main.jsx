@@ -19,6 +19,11 @@ import Cart from './component/Cart';
 import Feedback from './component/Feedback';
 import Payments from './component/Payments';
 import BookingHistory from './component/BookingHistory';
+import Pcaccess from './component/Pcaccess';
+import Foodorder from './component/Foodorder';
+import BillingPage from './component/BillingPage';
+import OrderInfo from './component/OrderInfo';
+import ThankYouPage from './component/Thanks';
 
 
 
@@ -76,7 +81,26 @@ const router = createBrowserRouter([
   {
     path: "/payments",
     element: <Payments></Payments>
-  }
+  },{
+    path: "/food",
+    element: <Foodorder></Foodorder>,
+  },
+  {
+    path: "/foodbill",
+    element: <BillingPage></BillingPage>,
+  },
+  {
+    path: "/orderinfo",
+    element: <OrderInfo></OrderInfo>,
+  },
+  {
+    path: "/thanks",
+    element: <ThankYouPage></ThankYouPage>,
+  },
+  {
+    path: "/pcAccess",
+    element: <Pcaccess></Pcaccess>,
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
