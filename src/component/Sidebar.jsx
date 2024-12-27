@@ -6,12 +6,28 @@ import auth from "../../firebase.config";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle sidebar visibility
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isAdmin, setIsAdmin] = useState(false); // Track if the user is an admin
   const navigate = useNavigate();
 
   // Monitor authentication state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsLoggedIn(!!user);
+      if (user) {
+        setIsLoggedIn(true);
+        // Fetch user's role from the database
+        fetch(`http://localhost:5000/users/${user.uid}`)
+          .then((res) => res.json())
+          
+          .then((data) => {
+            setIsAdmin(data.role === "admin");
+            console.log(data);
+            
+          })
+          .catch((error) => console.error("Error fetching user role:", error));
+      } else {
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -74,7 +90,7 @@ const Sidebar = () => {
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-bell-o mr-2"></i>
-            <span>Available rooms</span>
+            <span>Available Rooms</span>
           </Link>
           <Link
             to="/studyRoom"
@@ -82,7 +98,7 @@ const Sidebar = () => {
             onClick={toggleSidebar}
           >
             <i className="fa fa-fw fa-envelope-o mr-2"></i>
-            <span>Group study room</span>
+            <span>Group Study Room</span>
           </Link>
           <Link
             to="/feedback"
@@ -109,7 +125,7 @@ const Sidebar = () => {
             <span>Booking History</span>
           </Link>
           <Link
-            to="/Profile"
+            to="/profile"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
           >
@@ -132,6 +148,36 @@ const Sidebar = () => {
             <i className="fa fa-fw fa-desktop mr-2"></i>
             <span>PC Access</span>
           </Link>
+
+          {/* Admin-Only Links */}
+          {isAdmin && (
+            <>
+              <Link
+                to="/admin-requests"
+                className="flex items-center px-4 py-2 hover:bg-gray-700"
+                onClick={toggleSidebar}
+              >
+                <i className="fa fa-fw fa-user-plus mr-2"></i>
+                <span>New Admin Requests</span>
+              </Link>
+              <Link
+                to="/addRoom"
+                className="flex items-center px-4 py-2 hover:bg-gray-700"
+                onClick={toggleSidebar}
+              >
+                <i className="fa fa-fw fa-plus-circle mr-2"></i>
+                <span>Add Room</span>
+              </Link>
+              <Link
+                to="/delete-user"
+                className="flex items-center px-4 py-2 hover:bg-gray-700"
+                onClick={toggleSidebar}
+              >
+                <i className="fa fa-fw fa-user-times mr-2"></i>
+                <span>Delete User</span>
+              </Link>
+            </>
+          )}
 
           {/* Conditional Logout/Login */}
           {isLoggedIn ? (

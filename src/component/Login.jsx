@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../firebase.config";
 
 const Login = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(""); // State to store error message
 
-    const handleLogin = e => {
+    // Handle Email/Password Login
+    const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        // Firebase login
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -24,6 +24,22 @@ const Login = () => {
             .catch((error) => {
                 console.error("Login Error:", error.message);
                 setError("Invalid email or password. Please try again!"); // Set error message
+            });
+    };
+
+    // Handle Google Login
+    const handleGoogleLogin = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                console.log("Google User logged in:", user);
+                setError(""); // Clear error message
+                navigate("/"); // Navigate to the home page
+            })
+            .catch((error) => {
+                console.error("Google Login Error:", error.message);
+                setError("Failed to log in with Google. Please try again!"); // Set error message
             });
     };
 
@@ -77,7 +93,11 @@ const Login = () => {
 
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
-                                <button className="btn btn-primary mt-2 flex items-center justify-center">
+                                <button
+                                    type="button"
+                                    className="btn btn-primary mt-2 flex items-center justify-center"
+                                    onClick={handleGoogleLogin}
+                                >
                                     <img className="mr-2" src="https://i.ibb.co/W5ZPQrC/google.png" alt="Google" /> Google
                                 </button>
                                 <button className="btn btn-primary mt-2 flex items-center justify-center">
