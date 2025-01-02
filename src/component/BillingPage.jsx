@@ -20,6 +20,8 @@ const BillingPage = () => {
 
   const handlePaymentChoice = (method) => {
     alert(`You chose ${method} payment.`);
+
+    
   };
 
   return (
