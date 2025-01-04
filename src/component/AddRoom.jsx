@@ -67,7 +67,7 @@ const AddRoom = () => {
     <div className='gap-2'>
       <Sidebar />
       <div className="mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-4">Add New Room</h1>
+        <h1 className="text-3xl font-bold mb-4 ml-10">Add New Room</h1>
 
         {error && <p className="text-red-500">{error}</p>}
         {success && <p className="text-green-500">{success}</p>}

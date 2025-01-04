@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './component/Home';
+
 import Login from './component/Login';
 import Register from './component/Register';
 import RoomBooking from './component/RoomBooking';
@@ -21,11 +22,14 @@ import Payments from './component/Payments';
 import BookingHistory from './component/BookingHistory';
 import Pcaccess from './component/Pcaccess';
 import Foodorder from './component/Foodorder';
-import BillingPage from './component/BillingPage';
+import BillingPage from './component/OrderStatus';
 import OrderInfo from './component/OrderInfo';
 import ThankYouPage from './component/Thanks';
 import NewAdminRequest from './component/NewAdminRequest';
 import AddRoom from './component/AddRoom';
+import PcDetails from './component/PcDetails';
+import OrderStatus from './component/OrderStatus';
+import OrderUpdate from './component/OrderUpdate';
 
 
 
@@ -109,7 +113,17 @@ const router = createBrowserRouter([
   },
   {path: "/admin-requests",
     element: <NewAdminRequest></NewAdminRequest>
-  }
+  },
+  {path: "/pc-details/:id",
+    element: <PcDetails></PcDetails>
+  },
+  {path: "/OrderStatus",
+    element: <OrderStatus></OrderStatus>
+  },
+  {path: "/OrderUpdate",
+    element: <OrderUpdate></OrderUpdate>
+  },
+
   
 ]);
 

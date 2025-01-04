@@ -71,14 +71,15 @@ const NewAdminRequest = () => {
 
   return (
     <div>
+      <Sidebar></Sidebar>
         
         <div>
         
         <div className="container mx-auto p-4 ">
         
     
-    <h1 className="text-3xl font-bold mb-4">New Admin Requests</h1>
-    <Sidebar></Sidebar>
+    <h1 className="text-3xl font-bold mb-4 ml-10">New Admin Requests</h1>
+    
 
     {error && <p className="text-red-500">{error}</p>}
 

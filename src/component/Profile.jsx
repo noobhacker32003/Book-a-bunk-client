@@ -15,17 +15,15 @@ const Profile = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
-        const { displayName, email, phoneNumber, photoURL } = user;
+        const { displayName, email, photoURL } = user;
         setUserInfo({
           name: displayName || "John Doe",
           email: email,
-          phoneNumber: phoneNumber || "Not Provided",
           photoURL: photoURL || "https://via.placeholder.com/150",
         });
         setFormData({
           name: displayName || "",
           email: email,
-          phoneNumber: phoneNumber || "",
           photoURL: photoURL || "",
         });
       } else {
@@ -58,9 +56,8 @@ const Profile = () => {
   };
 
   const handleSave = () => {
-    const { name, photoURL, phoneNumber } = formData;
+    const { name, photoURL } = formData;
 
-    
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
@@ -68,8 +65,7 @@ const Profile = () => {
       .then(() => {
         console.log("Profile updated successfully");
 
-        
-        setUserInfo({ ...userInfo, name, photoURL, phoneNumber });
+        setUserInfo({ ...userInfo, name, photoURL });
         setIsEditing(false);
       })
       .catch((error) => {
@@ -108,14 +104,6 @@ const Profile = () => {
                       placeholder="Enter Photo URL"
                       className="input input-bordered mb-4"
                     />
-                    <input
-                      type="text"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
-                      onChange={handleInputChange}
-                      placeholder="Enter Phone Number"
-                      className="input input-bordered mb-4"
-                    />
                     <button onClick={handleSave} className="btn btn-success mr-2">
                       Save
                     </button>
@@ -128,9 +116,6 @@ const Profile = () => {
                     <h1 className="text-5xl font-bold">{userInfo?.name}</h1>
                     <p className="py-2">
                       <span className="underline">Email Address</span>: {userInfo?.email}
-                    </p>
-                    <p className="py-2">
-                      <span className="underline">Phone Number</span>: {userInfo?.phoneNumber}
                     </p>
                     <button onClick={handleEditToggle} className="btn btn-primary mt-4">
                       Edit Profile

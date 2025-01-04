@@ -17,11 +17,9 @@ const Sidebar = () => {
         // Fetch user's role from the database
         fetch(`http://localhost:5000/users/${user.uid}`)
           .then((res) => res.json())
-          
           .then((data) => {
             setIsAdmin(data.role === "admin");
             //console.log(data);
-            
           })
           .catch((error) => console.error("Error fetching user role:", error));
       } else {
@@ -141,6 +139,14 @@ const Sidebar = () => {
             <span>Food</span>
           </Link>
           <Link
+            to="/OrderStatus"
+            className="flex items-center px-4 py-2 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <i className="fa fa-fw fa-cutlery mr-2"></i>
+            <span>Order Status</span>
+          </Link>
+          <Link
             to="/pcAccess"
             className="flex items-center px-4 py-2 hover:bg-gray-700"
             onClick={toggleSidebar}
@@ -175,6 +181,15 @@ const Sidebar = () => {
               >
                 <i className="fa fa-fw fa-user-times mr-2"></i>
                 <span>Delete User</span>
+              </Link>
+              {/* New Order Update Link */}
+              <Link
+                to="/OrderUpdate"
+                className="flex items-center px-4 py-2 hover:bg-gray-700"
+                onClick={toggleSidebar}
+              >
+                <i className="fa fa-fw fa-refresh mr-2"></i>
+                <span>Order Update</span>
               </Link>
             </>
           )}
