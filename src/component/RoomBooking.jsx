@@ -4,6 +4,8 @@ import { Link, useLoaderData } from 'react-router-dom';
 const RoomBooking = () => {
   // Dynamic card data
       const room = useLoaderData();
+      console.log(room);
+      
       const [rooms, setrooms] = useState(room);
 
   return (

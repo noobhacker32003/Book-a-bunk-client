@@ -28,6 +28,8 @@ const BookingHistory = () => {
       fetch("http://localhost:5000/bookings")
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
+          
           // Filter data for the logged-in user
           const userBookings = data.filter(
             (booking) => booking.userEmail === userEmail

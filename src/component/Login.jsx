@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../firebase.config";
 
 const Login = () => {
@@ -40,6 +40,22 @@ const Login = () => {
             .catch((error) => {
                 console.error("Google Login Error:", error.message);
                 setError("Failed to log in with Google. Please try again!"); // Set error message
+            });
+    };
+
+    // Handle GitHub Login
+    const handleGithubLogin = () => {
+        const provider = new GithubAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                console.log("GitHub User logged in:", user);
+                setError(""); // Clear error message
+                navigate("/"); // Navigate to the home page
+            })
+            .catch((error) => {
+                console.error("GitHub Login Error:", error.message);
+                setError("Failed to log in with GitHub. Please try again!"); // Set error message
             });
     };
 
@@ -100,8 +116,12 @@ const Login = () => {
                                 >
                                     <img className="mr-2" src="https://i.ibb.co/W5ZPQrC/google.png" alt="Google" /> Google
                                 </button>
-                                <button className="btn btn-primary mt-2 flex items-center justify-center">
-                                    <img className="mr-2 bg-white rounded-2xl" src="https://i.ibb.co/Dbnh7YZ/icons8-github-32.png" alt="Github" /> Github
+                                <button
+                                    type="button"
+                                    className="btn btn-primary mt-2 flex items-center justify-center"
+                                    onClick={handleGithubLogin}
+                                >
+                                    <img className="mr-2 bg-white rounded-2xl" src="https://i.ibb.co/Dbnh7YZ/icons8-github-32.png" alt="Github" /> GitHub
                                 </button>
                             </div>
                         </form>

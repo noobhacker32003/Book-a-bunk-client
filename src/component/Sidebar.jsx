@@ -20,7 +20,7 @@ const Sidebar = () => {
           
           .then((data) => {
             setIsAdmin(data.role === "admin");
-            console.log(data);
+            //console.log(data);
             
           })
           .catch((error) => console.error("Error fetching user role:", error));
