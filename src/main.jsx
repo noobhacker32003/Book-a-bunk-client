@@ -30,6 +30,9 @@ import AddRoom from './component/AddRoom';
 import PcDetails from './component/PcDetails';
 import OrderStatus from './component/OrderStatus';
 import OrderUpdate from './component/OrderUpdate';
+import FandQ from './component/FandQ';
+import LoyaltyProgram from './component/LoyaltyProgram';
+import UDI from './component/UDI';
 
 
 
@@ -122,6 +125,15 @@ const router = createBrowserRouter([
   },
   {path: "/OrderUpdate",
     element: <OrderUpdate></OrderUpdate>
+  },
+  {path: "/F&Q",
+    element: <FandQ></FandQ>
+  },
+  {path: "/LoyaltyProgram",
+    element: <LoyaltyProgram></LoyaltyProgram>
+  },
+  {path: "/UDI",
+    element: <UDI></UDI>
   },
 
   
