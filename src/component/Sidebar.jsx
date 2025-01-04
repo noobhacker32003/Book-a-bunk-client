@@ -256,10 +256,10 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import auth from "../../firebase.config";
+// import React, { useState, useEffect } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { onAuthStateChanged, signOut } from "firebase/auth";
+// import auth from "../../firebase.config";
 
 // const Sidebar = () => {
 //   const [isOpen, setIsOpen] = useState(false); // State to toggle sidebar visibility
