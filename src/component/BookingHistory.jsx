@@ -61,7 +61,7 @@ roomId}</h3>
                     : "text-yellow-600"
                 }`}
               >
-                Status: {booking.status}
+                
               </p>
             </div>
           ))}

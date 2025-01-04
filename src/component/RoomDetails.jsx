@@ -8,7 +8,7 @@ const RoomDetails = () => {
   const roomData = useLoaderData();
   const [rooms, setRooms] = useState(roomData);
   const { id } = useParams();
-  const room = rooms.find(card => card.id === parseInt(id));
+  const room = rooms.find((card) => card.id === parseInt(id));
 
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -27,7 +27,7 @@ const RoomDetails = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
     setError('');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -50,47 +50,64 @@ const RoomDetails = () => {
     }
 
     if (date && time && userEmail) {
-      const bookingDetails = {
-        roomId: room.id,
-        title: room.title,
-        date,
-        time,
-        amount: room.pricePerNight,
-        userEmail: userEmail, // Include the user's email in the booking details
-      };
+      try {
+        // Fetch all bookings from the database
+        const response = await fetch('http://localhost:5000/bookings');
+        const allBookings = await response.json();
 
-      // Send booking to server for payment and booking history
-      fetch('http://localhost:5000/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingDetails),
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
+        // Filter bookings for the current room
+        const roomBookings = allBookings.filter((booking) => booking.roomId === room.id);
 
-          if (data.acknowledged) {
-            alert(`Booking successful for ${room.title} on ${date} at ${time}.`);
-          } else {
-            setError('Failed to book the room. Please try again.');
-          }
-        })
-        .catch(() => {
-          setError('An error occurred while booking the room. Please try again later.');
+        // Check if any booking matches the selected date and time
+        const isAlreadyBooked = roomBookings.some(
+          (booking) => booking.date === date && booking.time === time
+        );
+
+        if (isAlreadyBooked) {
+          setError('This room is already booked for the selected date and time.');
+          return;
+        }
+
+        // If no conflicts, proceed with booking
+        const bookingDetails = {
+          roomId: room.id,
+          title: room.title,
+          date,
+          time,
+          amount: room.pricePerNight,
+          userEmail,
+        };
+
+        // Send booking details to the server
+        const bookingResponse = await fetch('http://localhost:5000/bookings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bookingDetails),
         });
 
-      // Optionally: Post the same data to payment history endpoint
-      fetch('http://localhost:5000/payments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingDetails),
-      }).catch(() => {
-        console.error('Failed to update payment history.');
-      });
+        const bookingResult = await bookingResponse.json();
+
+        if (bookingResult.acknowledged) {
+          alert(`Booking successful for ${room.title} on ${date} at ${time}.`);
+        } else {
+          setError('Failed to book the room. Please try again.');
+        }
+
+        // Optionally: Post the same data to payment history endpoint
+        fetch('http://localhost:5000/payments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bookingDetails),
+        }).catch(() => {
+          console.error('Failed to update payment history.');
+        });
+      } catch (err) {
+        setError('An error occurred while checking or booking the room. Please try again later.');
+      }
     } else {
       setError('Please select both date and time to proceed with the booking.');
     }
@@ -107,7 +124,7 @@ const RoomDetails = () => {
 
   return (
     <div className="container mx-auto my-10 px-4">
-      <Sidebar></Sidebar>
+      <Sidebar />
       <h1 className="text-4xl font-bold text-center mb-6">{room.title}</h1>
       <div className="flex justify-center mb-8">
         <img src={room.image} alt={room.title} className="w-full max-w-2xl rounded-lg shadow-lg" />
