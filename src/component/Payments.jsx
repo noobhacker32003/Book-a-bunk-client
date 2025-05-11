@@ -23,7 +23,7 @@ const Payments = () => {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/payments`);
+                const response = await fetch(`https://book-a-bunk-server.onrender.com/payments`);
                 const data = await response.json();
                 
                 // Filter payments by user email

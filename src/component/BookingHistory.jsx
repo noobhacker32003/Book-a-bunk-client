@@ -25,7 +25,7 @@ const BookingHistory = () => {
   // Fetch booking history
   useEffect(() => {
     if (userEmail) {
-      fetch("http://localhost:5000/bookings")
+      fetch("https://book-a-bunk-server.onrender.com/bookings")
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

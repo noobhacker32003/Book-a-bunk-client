@@ -32,7 +32,7 @@ const Feedback = () => {
 
     // Fetch all feedbacks
     useEffect(() => {
-        fetch('http://localhost:5000/feedback')
+        fetch('https://book-a-bunk-server.onrender.com/feedback')
             .then((res) => res.json())
             .then((data) => setFeedbacks(data));
     }, []);
@@ -41,7 +41,7 @@ const Feedback = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const response = await fetch('http://localhost:5000/bookings');
+                const response = await fetch('https://book-a-bunk-server.onrender.com/bookings');
                 const data = await response.json();
                 console.log(data);
                 
@@ -81,7 +81,7 @@ const Feedback = () => {
             return;
         }
 
-        fetch('http://localhost:5000/feedback', {
+        fetch('https://book-a-bunk-server.onrender.com/feedback', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

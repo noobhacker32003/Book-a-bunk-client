@@ -33,8 +33,8 @@ const AddRoom = () => {
     }
 
     const postUrl = roomType === 'study' 
-      ? 'http://localhost:5000/studyRooms' 
-      : 'http://localhost:5000/rooms';
+      ? 'https://book-a-bunk-server.onrender.com/studyRooms' 
+      : 'https://book-a-bunk-server.onrender.com/rooms';
 
     try {
       const response = await fetch(postUrl, {

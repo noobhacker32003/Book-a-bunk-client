@@ -6,7 +6,7 @@ const Carousel = () => {
 <div className="carousel mt-10 mx-80 w-[900px] h-[400px]">
   <div id="item4" className="carousel-item w-full ">
     <img
-      src="https://3.imimg.com/data3/HL/MM/MY-10413033/single-bed-room-services.jpg"
+      src="https://i.ibb.co.com/G4G7ywDk/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg"
       className="w-full" />
   </div>
   <div id="item2" className="carousel-item w-full">

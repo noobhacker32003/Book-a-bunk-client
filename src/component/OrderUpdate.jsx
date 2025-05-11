@@ -9,7 +9,7 @@ const OrderUpdate = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/orderDetails');
+        const response = await fetch('https://book-a-bunk-server.onrender.com/orderDetails');
         const data = await response.json();
         setOrders(data); // Set orders once data is fetched
       } catch (error) {
@@ -26,7 +26,7 @@ const OrderUpdate = () => {
   const handleUpdate = (id, newOrderInfo) => {
     const updatedData = { orderInfo: newOrderInfo };
 
-    fetch(`http://localhost:5000/orderDetails/${id}`, {
+    fetch(`https://book-a-bunk-server.onrender.com/orderDetails/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -64,7 +64,7 @@ const Foodorder = () => {
     };
 
     // Send the order details to the backend
-    fetch('http://localhost:5000/orderDetails', {
+    fetch('https://book-a-bunk-server.onrender.com/orderDetails', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orderDetails),

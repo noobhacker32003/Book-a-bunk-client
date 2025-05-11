@@ -7,34 +7,38 @@ const data = [
     id: 1,
     title: "PC 01",
     description: "For Daily Use",
-    imageUrl: "/Images/Image1.jpg",
+    pricePerHour: 10,
+    imageUrl: "https://img.freepik.com/premium-photo/workspace-desk-with-desktop-computer-with-house-plant-office-supplies_41470-904.jpg",
   },
   {
     id: 2,
     title: "PC 02",
     description: "For Programming Purpose",
-    imageUrl: "/Images/Image1.jpg",
+    pricePerHour: 15,
+    imageUrl: "https://img.freepik.com/premium-photo/white-computer-minimal-desktop-with-plants-mock-up-3d-rendering_72104-3444.jpg",
   },
   {
     id: 3,
     title: "PC 03",
     description: "For Programming Purpose",
-    imageUrl: "/Images/Image1.jpg",
+    pricePerHour: 15,
+    imageUrl: "https://img.freepik.com/premium-photo/work-place-concept-mock-up-blank-screen-computer-desktop_33996-680.jpg",
   },
   {
     id: 4,
     title: "PC 04",
     description: "For Gaming Purpose",
-    imageUrl: "/Images/Image1.jpg",
+    pricePerHour: 20,
+    imageUrl: "https://img.freepik.com/premium-psd/minimal-desktop-workspace-mock-up-design_23-2149012093.jpg",
   },
   {
     id: 5,
     title: "PC 05",
     description: "For Gaming Purpose",
-    imageUrl: "/Images/Image1.jpg",
+    pricePerHour: 20,
+    imageUrl: "https://img.freepik.com/premium-photo/black-white-desktop-with-three-devices-showing-responsive-website-3d-rendering_72104-4191.jpg",
   },
 ];
-
 const Pcaccess = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4">
@@ -50,7 +54,7 @@ const Pcaccess = () => {
             <img
               src={item.imageUrl}
               alt={item.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-64 "
             />
             <div className="p-4">
               <h2 className="text-lg font-semibold mb-2">{item.title}</h2>

@@ -7,7 +7,7 @@ const NewAdminRequest = () => {
 
   useEffect(() => {
     // Fetch all users
-    fetch("http://localhost:5000/users")
+    fetch("https://book-a-bunk-server.onrender.com/users")
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched data:", data);
@@ -28,7 +28,7 @@ const NewAdminRequest = () => {
   const handleApproval = async (userId) => {
     try {
       const updatedUser = { role: 'admin' }; // Approve by changing role to admin
-      const response = await fetch(`http://localhost:5000/users/${userId}`, {
+      const response = await fetch(`https://book-a-bunk-server.onrender.com/users/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const NewAdminRequest = () => {
   const handleRejection = async (userId) => {
     try {
       const updatedUser = { role: 'user' }; // Reject by changing role to user
-      const response = await fetch(`http://localhost:5000/users/${userId}`, {
+      const response = await fetch(`https://book-a-bunk-server.onrender.com/users/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

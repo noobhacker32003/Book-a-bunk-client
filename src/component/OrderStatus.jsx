@@ -23,7 +23,7 @@ const OrderStatus = () => {
   useEffect(() => {
     if (userEmail) {
       // Fetch order details from the server
-      fetch('http://localhost:5000/orderDetails')
+      fetch('https://book-a-bunk-server.onrender.com/orderDetails')
         .then((response) => response.json())
         .then((data) => {
           // Filter orders matching the user email

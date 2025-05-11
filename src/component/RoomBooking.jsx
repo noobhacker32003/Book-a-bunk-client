@@ -22,6 +22,7 @@ const RoomBooking = () => {
             <div className="card-body">
               <h2 className="card-title">{card.title}</h2>
               <p>{card.description}</p>
+              <p className="text-xl font-semibold mb-4">Price: <span className="text-green-500">${card.pricePerNight} per night</span></p>
               <div className="card-actions justify-end">
               <Link to={`/room/${card.id}`}><button className="btn btn-primary">Book Now</button></Link>
               </div>

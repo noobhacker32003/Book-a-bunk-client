@@ -23,7 +23,7 @@ const Home = () => {
             setIsLoggedIn(false);
           }
 
-          fetch("http://localhost:5000/studyRooms")
+          fetch("https://book-a-bunk-server.onrender.com/studyRooms")
           .then(res => res.json())
           .then(data => setstudyRooms(data)
           )
@@ -65,15 +65,15 @@ const Home = () => {
 </div>
 
 <div className=''><h1 className='text-center text-5xl '>Book a bunk</h1></div>
-<Carousel></Carousel>
+{/* <Carousel></Carousel> */}
 <div className="container mx-auto my-10">
     
       <h1 className="text-3xl font-bold text-center mb-6">Available Rooms</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {rooms.map((card) => (
           <div key={card.id} className="card bg-base-100 shadow-xl">
-            <figure>
-              <img src={card.image} alt={card.title} />
+            <figure >
+              <img className=' h-[350.54px]'  src={card.image} alt={card.title} />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{card.title}</h2>
@@ -104,6 +104,7 @@ const Home = () => {
         <div className="card-body">
             <h2 className="card-title">{card.title}</h2>
             <p>{card.description}</p>
+            <p className="text-xl font-semibold mb-4">Price: <span className="text-green-500">${card.price} per hour</span></p>
             <div className="card-actions justify-end">
             <Link to={`/studyRoom/${card.id}`}><button className="btn btn-primary">Book Now</button></Link>
             </div>

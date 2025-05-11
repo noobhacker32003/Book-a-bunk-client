@@ -15,7 +15,7 @@ const Sidebar = () => {
       if (user) {
         setIsLoggedIn(true);
         // Fetch user's role from the database
-        fetch(`http://localhost:5000/users/${user.uid}`)
+        fetch(`https://book-a-bunk-server.onrender.com/users/${user.uid}`)
           .then((res) => res.json())
           .then((data) => {
             setIsAdmin(data.role === "admin");
@@ -273,7 +273,7 @@ export default Sidebar;
 //       if (user) {
 //         setIsLoggedIn(true);
 //         // Fetch user's role from the database
-//         fetch(`http://localhost:5000/users/${user.uid}`)
+//         fetch(`https://book-a-bunk-server.onrender.com/users/${user.uid}`)
 //           .then((res) => res.json())
 //           .then((data) => {
 //             setIsAdmin(data.role === "admin");

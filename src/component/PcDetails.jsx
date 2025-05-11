@@ -8,35 +8,35 @@ const data = [
     title: "PC 01",
     description: "For Daily Use",
     pricePerHour: 10,
-    imageUrl: "/Images/Image1.jpg",
+    imageUrl: "https://img.freepik.com/premium-photo/workspace-desk-with-desktop-computer-with-house-plant-office-supplies_41470-904.jpg",
   },
   {
     id: 2,
     title: "PC 02",
     description: "For Programming Purpose",
     pricePerHour: 15,
-    imageUrl: "/Images/Image1.jpg",
+    imageUrl: "https://img.freepik.com/premium-photo/white-computer-minimal-desktop-with-plants-mock-up-3d-rendering_72104-3444.jpg",
   },
   {
     id: 3,
     title: "PC 03",
     description: "For Programming Purpose",
     pricePerHour: 15,
-    imageUrl: "/Images/Image1.jpg",
+    imageUrl: "https://img.freepik.com/premium-photo/work-place-concept-mock-up-blank-screen-computer-desktop_33996-680.jpg",
   },
   {
     id: 4,
     title: "PC 04",
     description: "For Gaming Purpose",
     pricePerHour: 20,
-    imageUrl: "/Images/Image1.jpg",
+    imageUrl: "https://img.freepik.com/premium-psd/minimal-desktop-workspace-mock-up-design_23-2149012093.jpg",
   },
   {
     id: 5,
     title: "PC 05",
     description: "For Gaming Purpose",
     pricePerHour: 20,
-    imageUrl: "/Images/Image1.jpg",
+    imageUrl: "https://img.freepik.com/premium-photo/black-white-desktop-with-three-devices-showing-responsive-website-3d-rendering_72104-4191.jpg",
   },
 ];
 
@@ -79,7 +79,7 @@ const PcDetails = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/pc-bookings', {
+      const response = await fetch('https://book-a-bunk-server.onrender.com/pcbookinghistory', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

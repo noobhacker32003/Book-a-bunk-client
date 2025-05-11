@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    loader: () => fetch("http://localhost:5000/rooms")
+    loader: () => fetch("https://book-a-bunk-server.onrender.com/rooms")
   },
   {
     path: "/login",
@@ -53,12 +53,12 @@ const router = createBrowserRouter([
   {
     path: "/rooms",
     element: <RoomBooking></RoomBooking>,
-    loader: () => fetch("http://localhost:5000/rooms")
+    loader: () => fetch("https://book-a-bunk-server.onrender.com/rooms")
   },
   {
     path: "/studyRoom",
     element: <GroupStudy></GroupStudy>,
-    loader: () => fetch("http://localhost:5000/studyRooms")
+    loader: () => fetch("https://book-a-bunk-server.onrender.com/studyRooms")
   },
   {
     path: "/Profile",
@@ -67,12 +67,12 @@ const router = createBrowserRouter([
   {
     path: "/room/:id", // Add route for RoomDetails
     element: <RoomDetails></RoomDetails>,
-    loader: () => fetch("http://localhost:5000/rooms")
+    loader: () => fetch("https://book-a-bunk-server.onrender.com/rooms")
   },
   {
     path: "/studyRoom/:id",
     element: <StudyRoomDetails></StudyRoomDetails>,
-    loader: () => fetch("http://localhost:5000/studyRooms")
+    loader: () => fetch("https://book-a-bunk-server.onrender.com/studyRooms")
     
   },
   {

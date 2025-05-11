@@ -39,7 +39,7 @@ const Register = () => {
                 role: role === "admin" ? "pending" : "user",
             };
 
-            fetch('http://localhost:5000/users', {
+            fetch('https://book-a-bunk-server.onrender.com/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),
@@ -69,7 +69,7 @@ const Register = () => {
                 role: "user",
             };
 
-            fetch('http://localhost:5000/users', {
+            fetch('https://book-a-bunk-server.onrender.com/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),
@@ -96,7 +96,7 @@ const Register = () => {
                 role: "user",
             };
 
-            fetch('http://localhost:5000/users', {
+            fetch('https://book-a-bunk-server.onrender.com/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),

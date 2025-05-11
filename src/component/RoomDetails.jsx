@@ -52,7 +52,7 @@ const RoomDetails = () => {
     if (date && time && userEmail) {
       try {
         // Fetch all bookings from the database
-        const response = await fetch('http://localhost:5000/bookings');
+        const response = await fetch('https://book-a-bunk-server.onrender.com/bookings');
         const allBookings = await response.json();
 
         // Filter bookings for the current room
@@ -79,7 +79,7 @@ const RoomDetails = () => {
         };
 
         // Send booking details to the server
-        const bookingResponse = await fetch('http://localhost:5000/bookings', {
+        const bookingResponse = await fetch('https://book-a-bunk-server.onrender.com/bookings', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const RoomDetails = () => {
         }
 
         // Optionally: Post the same data to payment history endpoint
-        fetch('http://localhost:5000/payments', {
+        fetch('https://book-a-bunk-server.onrender.com/payments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
